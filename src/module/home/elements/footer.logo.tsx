@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
-const Logo = () => {
+const FooterLogo = () => {
     return (
-        <div className="relative flex items-center">
+        <div className="w-min relative flex items-center">
             <svg
                 version="1.1"
                 id="a"
@@ -10,7 +10,7 @@ const Logo = () => {
                 x="0px"
                 y="0px"
                 viewBox="0 0 439.4 110.2"
-                className="fill-black cursor-pointer h-[28px] lg:h-[32px]"
+                className="fill-white w-[180px]"
             >
                 <g id="b">
                     <g id="c">
@@ -45,11 +45,11 @@ const Logo = () => {
                     </g>
                 </g>
             </svg>
-            <h5 className="absolute right-[-45px] xl:right-[-35px] pt-1 font-medium text-2xl">
-            BuzzMail
+            <h5 className="absolute right-[0px] pt-1 font-medium text-2xl">
+                BuzzMail
             </h5>
         </div>
-    )
-}
+    );
+};
 
-export default Logo
+export default FooterLogo;
