@@ -26,7 +26,7 @@ const Toolbar = () => {
                     </Link>
                 </>
             ) : (
-                <Link href={"/sign-in"}>Login</Link>
+                <Link href={"/sign-in"} className="hover:bg-slate-200 px-3 py-2 rounded-md hover:border-black hover:bottom-2">Login</Link>
             )}
         </>
     );

@@ -1,4 +1,5 @@
-
+import { stripeSubscribe } from "../../../actions/stripe.subscription";
+import { GrowPlan, freePlan, scalePlan } from "../../../app/configs/constant";
 import { ICONS } from "@/shared/utils/icons";
 import { useUser } from "@clerk/nextjs";
 import { Button } from "@nextui-org/button";
@@ -7,7 +8,13 @@ import { useRouter } from "next/navigation";
 const PricingCard = ({ active }: { active: string }) => {
     const { user } = useUser();
     const history = useRouter();
-   
+    const handleSubscription = async ({ price }: { price: string }) => {
+        await stripeSubscribe({ price: price, userId: user?.id! }).then(
+            (res: any) => {
+                history.push(res);
+            }
+        );
+    };
 
     return (
         <div className="w-full md:flex items-start justify-around py-8">
@@ -40,12 +47,12 @@ const PricingCard = ({ active }: { active: string }) => {
                 <div className="pt-5">
                     <p className="text-xl">What&apos;s included...</p>
                 </div>
-                {/* {freePlan.map((i: PlanType, index: number) => (
+                {freePlan.map((i: PlanType, index: number) => (
                     <div key={index} className="flex w-full items-center py-4">
                         <span className="text-xl">{ICONS.right}</span>
                         <p className="pl-2 text-lg">{i.title}</p>
                     </div>
-                ))} */}
+                ))}
                 <br />
                 <Button color="primary" className="w-full text-xl !py-6">
                     Get Started
@@ -84,24 +91,24 @@ const PricingCard = ({ active }: { active: string }) => {
                 <div className="pt-5">
                     <p className="text-xl">Everything in Launch, plus...</p>
                 </div>
-                {/* {GrowPlan.map((i: PlanType, index: number) => (
+                {GrowPlan.map((i: PlanType, index: number) => (
                     <div key={index} className="flex w-full items-center py-4">
                         <span className="text-xl">{ICONS.right}</span>
                         <p className="pl-2 text-lg">{i.title}</p>
                     </div>
-                ))} */}
+                ))}
                 <br />
                 <Button
                     color="primary"
                     className="w-full text-xl !py-6"
-                    // onClick={() =>
-                    //     handleSubscription({
-                    //         price:
-                    //             active === "Monthly"
-                    //                 ? "price_1OnaWFSA1WAzNgKlsGN6K4ZW"
-                    //                 : "price_1Onbt8SA1WAzNgKlyrXYlJBG",
-                    //     })
-                    // }
+                    onClick={() =>
+                        handleSubscription({
+                            price:
+                                active === "Monthly"
+                                    ? "price_1PciiBRvFg6u2LsQX8jiIWhu"
+                                    : "price_1PcikbRvFg6u2LsQP7HAhbf6",
+                        })
+                    }
                 >
                     Get Started
                 </Button>
@@ -140,24 +147,24 @@ const PricingCard = ({ active }: { active: string }) => {
                 <div className="pt-5">
                     <p className="text-xl">Everything in Grow, plus...</p>
                 </div>
-                {/* {scalePlan.map((i: PlanType, index: number) => (
+                {scalePlan.map((i: PlanType, index: number) => (
                     <div key={index} className="flex w-full items-center py-4">
                         <span className="text-xl">{ICONS.right}</span>
                         <p className="pl-2 text-lg">{i.title}</p>
                     </div>
-                ))} */}
+                ))}
                 <br />
                 <Button
                     color="primary"
                     className="w-full text-xl !py-6"
-                    // onClick={() =>
-                        // handleSubscription({
-                        //     price:
-                        //         active === "Monthly"
-                        //             ? "price_1On2H2SA1WAzNgKlV64Zj6gE"
-                        //             : "price_1Onf9gSA1WAzNgKlg8NLBP4r",
-                        // })
-                    
+                    onClick={() =>
+                        handleSubscription({
+                            price:
+                                active === "Monthly"
+                                    ? "price_1PcijqRvFg6u2LsQsPR089hv"
+                                    : "price_1PciloRvFg6u2LsQ2jD0QqLW",
+                        })
+                    }
                 >
                     Get Started
                 </Button>

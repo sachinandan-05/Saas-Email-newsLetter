@@ -11,7 +11,7 @@ const Footer = () => {
             <FooterLogo />
           </Link>
           <p className='text-2xl py-2'>
-            Get Becodemy updates delivered directly to your inbox.
+            Get BuzzMail updates delivered directly to your inbox.
           </p>
           <div className='flex items-center w-full'>
             <input
@@ -56,7 +56,7 @@ const Footer = () => {
         </div>
       </div>
       <p className='text-lg text-center pb-10'>
-        © 2024 Becodemy, Inc. All rights reserved.
+        © 2024 BuzzMail, Inc. All rights reserved.
       </p>
     </footer>
   );
