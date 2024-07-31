@@ -4,20 +4,19 @@ import { ICONS } from "@/shared/utils/icons";
 
 const DashboardOverViewCard = () => {
     const { subscribersData, loading } = useSubscribersAnalytics();
-    const lastMonthSubscribers =
-        !loading &&
-        subscribersData?.last7Months[subscribersData?.last7Months?.length - 1];
+    const lastMonthSubscribers = !loading && subscribersData?.last7Months?.length > 0
+        ? subscribersData.last7Months[subscribersData.last7Months.length - 1].count
+        : 0;
 
-    const previousLastMonthSubscribers =
-        !loading &&
-        subscribersData?.last7Months[subscribersData?.last7Months?.length - 2];
+    const previousLastMonthSubscribers = !loading && subscribersData?.last7Months?.length > 1
+        ? subscribersData.last7Months[subscribersData.last7Months.length - 2].count
+        : 0;
 
     let comparePercentage = 0;
 
-    if (previousLastMonthSubscribers.count > 0) {
+    if (previousLastMonthSubscribers > 0) {
         comparePercentage =
-            ((lastMonthSubscribers - previousLastMonthSubscribers) /
-                previousLastMonthSubscribers) *
+            ((lastMonthSubscribers - previousLastMonthSubscribers) / previousLastMonthSubscribers) *
             100;
     } else {
         comparePercentage = 100;
@@ -25,20 +24,20 @@ const DashboardOverViewCard = () => {
 
     return (
         <div className="w-full xl:py-4 flex bg-white border rounded">
-            {/* subscribers */}
+            {/* Subscribers */}
             <div className="w-[33.33%] border-r p-5 text-lg">
                 <h5 className="text-lg">Subscribers</h5>
                 <div className="w-full flex items-center justify-between">
                     <span className="font-medium pt-2">
-                        {loading ? "..." : lastMonthSubscribers.count}
+                        {loading ? "..." : lastMonthSubscribers}
                     </span>
                     <div className="h-[30px] flex p-2 items-center bg-[#DCFCE6] rounded-full">
                         <span className="text-[#21C55D]">{ICONS.topArrow}</span>
-                        <span className="text-sm pl-1">{comparePercentage}%</span>
+                        <span className="text-sm pl-1">{comparePercentage.toFixed(2)}%</span>
                     </div>
                 </div>
                 <small className="block text-sm opacity-[.7] pt-2">
-                    from 0 (last 4 weeks)
+                    from {previousLastMonthSubscribers} (last 4 weeks)
                 </small>
             </div>
             {/* Open Rate */}
